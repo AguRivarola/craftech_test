@@ -30,7 +30,8 @@ jobs:
   
         - name: Build and push Front
           uses: docker/build-push-action@v2
+          working-directory: ./frontend
           with:
-            file: ./frontend/Dockerfile
+            file: Dockerfile
             tags: bondiolino/craf_test:frontend
             push: true
