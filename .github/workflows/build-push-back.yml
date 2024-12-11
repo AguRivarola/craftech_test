@@ -44,9 +44,7 @@ jobs:
             echo POSTGRES_DB=${{ vars.POSTGRES_DB }} >> .env
             echo SQL_PORT=${{ vars.SQL_PORT }} >> .env
             echo SQL_HOST=${{ vars.SQL_HOST }} >> .env
-            pwd
             ls -lha
-            cat .env
             
         - name: Build and push Front
           uses: docker/build-push-action@v2
