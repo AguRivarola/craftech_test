@@ -11,6 +11,8 @@ on:
     paths:
       - 'frontend/**'
       - '!frontend/README.md'
+  workflow_dispatch:
+
 
 jobs:
   build:
