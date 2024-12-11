@@ -17,9 +17,9 @@ on:
 jobs:
   build:
       runs-on: ubuntu-latest
-      #defaults:
-      #   run:
-      #    working-directory: ./backend
+      defaults:
+        run:
+         working-directory: ./backend
       steps:
         - name: Checkout
           uses: actions/checkout@v2
@@ -35,6 +35,8 @@ jobs:
 
         - name: Debug
           run: |
+            pwd
+            ls -lha
             echo DATABASE=${{ env.DATABASE }} >> .env
             echo SQL_DATABASE=${{ env.SQL_DATABASE }} >> .env
             echo POSTGRES_USER=${{ env.POSTGRES_USER }} >> .env
@@ -42,6 +44,9 @@ jobs:
             echo POSTGRES_DB=${{ env.POSTGRES_DB }} >> .env
             echo SQL_PORT=${{ env.SQL_PORT }} >> .env
             echo SQL_HOST=${{ env.SQL_HOST }} >> .env
+            pwd
+            ls -lh
+            cat .env
             
         - name: Build and push Front
           uses: docker/build-push-action@v2
