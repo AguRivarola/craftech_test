@@ -32,6 +32,11 @@ jobs:
           with:
             username: ${{ secrets.DOCKERHUB_USERNAME }}
             password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+        - name: Debug
+          run: |
+            chmod +x backend/setup_env.sh
+            ./backend/setup_env.sh
             
         - name: Build and push Front
           uses: docker/build-push-action@v2
