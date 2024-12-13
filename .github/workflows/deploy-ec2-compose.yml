@@ -1,4 +1,4 @@
-name: Deploy to AWS EC2 with Terraform and Kubernetes
+name: Deploy to AWS EC2 with Terraform and Compose
 
 on:
   workflow_dispatch:

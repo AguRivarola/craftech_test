@@ -1,6 +1,7 @@
 #!/bin/bash
 sudo apt-get update
 sudo apt-get install ca-certificates curl
+echo "packetes instalados" >> /home/ubuntu/set_up.log
 sudo install -m 0755 -d /etc/apt/keyrings
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 sudo chmod a+r /etc/apt/keyrings/docker.asc
@@ -10,7 +11,7 @@ echo \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-
+echo "Docker y compose instalado" >> /home/ubuntu/set_up.log
 
 cd /home/ubuntu/
 
@@ -60,7 +61,10 @@ services:
 volumes:
   postgres_data:
 EOF
-
+echo "Compose file creado" >> /home/ubuntu/set_up.log
 chmod +x $SCRIPT_NAME
-sleep 20
+echo "Esperando daemon de docker" >> /home/ubuntu/set_up.log
+sleep 35
+echo "Termino de esperar daemon de docker" >> /home/ubuntu/set_up.log
 sudo docker-compose -f $SCRIPT_NAME up -d
+echo "Corrido el 'sudo docker-compose -f $SCRIPT_NAME up -d' " >> /home/ubuntu/set_up.log
