@@ -6,5 +6,5 @@ variable "instance_type" {
 variable "key_pair_name" {
   description = "key for SSH"
   type        = string
-  default     = "devops-key"
+  default     = "ec2-access"
 }
