@@ -48,4 +48,4 @@ Al actualizar el `nginx/index.html` y pushear, se corre `.github/workflows/build
 Podemos actualizar de 3 formas el index:
 1) Correr action `Deploy to AWS EC2 with Terraform and Compose` y que se despliegue nuevamente
 2) Conectarse mediante SSH al servidor y correr el script `/home/ubuntu/deploy_ngx.sh` que se crea mediante `deploy.sh`.
-3) Correr action `Update nginx via ssh`
+3) Correr action `Update nginx via ssh` ponieno la ip que nos devolvio el action de ec2.
