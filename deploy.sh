@@ -33,7 +33,7 @@ services:
   api:
     image: bondiolino/craf_test:backend
     volumes:
-      - ./backend:/usr/src/app/
+      # - ./backend:/usr/src/app/
       - static:/src/app/static
       - static:/src/app/media
     ports:
