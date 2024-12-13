@@ -71,3 +71,14 @@ echo "Termino de esperar daemon de docker" >> /home/ubuntu/set_up.log
 
 sudo docker compose -f $SCRIPT_NAME up -d
 echo "Corrido el 'sudo docker-compose -f $SCRIPT_NAME up -d' " >> /home/ubuntu/set_up.log
+
+sudo docker pull bondiolino/craf_test:nginx
+sudo docker run -dp 80:80 --name nginx bondiolino/craf_test:nginx
+
+
+cat << 'EOF' > /home/ubuntu/deploy_ngx.sh
+sudo docker pull bondiolino/craf_test:nginx
+sudo docker stop nginx
+sudo docker rm nginx
+sudo docker run -dp 80:80 --name nginx bondiolino/craf_test:nginx
+EOF
