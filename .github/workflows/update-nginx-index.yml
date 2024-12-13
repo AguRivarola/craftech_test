@@ -1,0 +1,28 @@
+name: Update nginx via ssh
+
+on:
+  workflow_dispatch:
+    inputs:
+      ip_ec2:
+        description: 'Ip EC2 desplegada'
+        required: true
+        type: string
+
+
+jobs:
+  Deploy:
+    name: Update nginx index via ssh
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2 
+      - name: Build & Deploy
+        env:
+            PRIVATE_KEY: ${{ secrets.SSH_KEY }}
+            HOSTNAME: ${{ github.event.inputs.ip_ec2 }}
+            USER_NAME: ${{secrets.SSH_USER}}
+      
+        run: |
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+          ./home/ubuntu/deploy_ngx.sh
