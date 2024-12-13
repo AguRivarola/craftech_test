@@ -42,7 +42,7 @@ services:
       - POSTGRES_DB=core
       - SQL_PORT=5432
       - SQL_HOST=db
-      - ALLOWED_HOST=craft_test.prueba
+      - ALLOWED_HOST=crafttest.prueba
     depends_on:
       - db
   
@@ -73,10 +73,13 @@ echo "Termino de esperar daemon de docker" >> /home/ubuntu/set_up.log
 sudo docker compose -f $SCRIPT_NAME up -d
 echo "Corrido el 'sudo docker-compose -f $SCRIPT_NAME up -d' " >> /home/ubuntu/set_up.log
 
+echo "Trayendo imagen nginx" >> /home/ubuntu/set_up.log
 sudo docker pull bondiolino/craf_test:nginx
+echo "Desplegando imagen nginx" >> /home/ubuntu/set_up.log
 sudo docker run -dp 80:80 --name nginx bondiolino/craf_test:nginx
 
 
+echo "Creando script redeploy" >> /home/ubuntu/set_up.log
 cat << 'EOF' > /home/ubuntu/deploy_ngx.sh
 sudo docker pull bondiolino/craf_test:nginx
 sudo docker stop nginx

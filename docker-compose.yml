@@ -20,7 +20,7 @@ services:
       - POSTGRES_DB=core
       - SQL_PORT=5432
       - SQL_HOST=db
-      - ALLOWED_HOST=craft_test.prueba
+      - ALLOWED_HOST=crafttest.prueba
     depends_on:
       - db
   
