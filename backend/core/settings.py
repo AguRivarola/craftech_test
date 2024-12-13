@@ -150,7 +150,9 @@ REST_FRAMEWORK = {
 # ################### CORS              ############################### #
 # ##################################################################### #
 
-CORS_ALLOWED_ORIGINS = ["http://localhost:3000", "http://127.0.0.1:3000"]
+ALLOWED_HOST = os.getenv("ALLOWED_HOST","localhost" )
+HOST_CORS = f"http://{ALLOWED_HOST}:3000"
+CORS_ALLOWED_ORIGINS = ["http://localhost:3000", "http://127.0.0.1:3000",HOST_CORS]
 
 # ##################################################################### #
 # ################### TESTING           ############################### #
