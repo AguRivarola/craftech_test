@@ -62,5 +62,5 @@ volumes:
 EOF
 
 chmod +x $SCRIPT_NAME
-
+sleep 20
 sudo docker-compose -f $SCRIPT_NAME up -d
