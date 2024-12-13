@@ -19,6 +19,7 @@ docker compose up -d
 
 1) Correr action `Deploy to AWS EC2 with Terraform and Compose` y esperar a que llegue al paso `Get EC2 instance IP`.
 2) Mientras se levanta la infra, agrega en el archivo host la ip del paso anterior y guarda los cambios.
+3) Deberiamos esperar unos minutos y ya podriamos validar.
 
 ## Validacion 
 - Front:
