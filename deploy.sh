@@ -86,3 +86,4 @@ sudo docker stop nginx
 sudo docker rm nginx
 sudo docker run -dp 80:80 --name nginx bondiolino/craf_test:nginx
 EOF
+chmod +x /home/ubuntu/deploy_ngx.sh
