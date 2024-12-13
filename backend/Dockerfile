@@ -26,7 +26,6 @@ RUN apk add --update --no-cache --virtual .tmp-build-deps \
 # copy entrypoint.sh
 ENV SQL_DATABASE=postgres
 COPY ./entrypoint.sh .
-COPY .env .env
 RUN ls -lha
 # copy project
 COPY . .

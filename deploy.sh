@@ -9,7 +9,9 @@ echo \
   $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+sudo usermod -aG docker ubuntu
 
 cd /home/ubuntu/
 
@@ -18,8 +20,6 @@ SCRIPT_NAME="/home/ubuntu/docker-compose.yml"
 
 # Contenido del nuevo script
 cat << 'EOF' > $SCRIPT_NAME
-version: '3.8'
-
 services:
  
   react:
@@ -32,21 +32,27 @@ services:
 
   api:
     image: bondiolino/craf_test:backend
-    volumes:
-      # - ./backend:/usr/src/app/
-      - static:/src/app/static
-      - static:/src/app/media
     ports:
       - 8000:8000
-    env_file:
-      - ./backend/.env
+    environment:
+      - DATABASE=postgres
+      - SQL_DATABASE=postgres
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=core
+      - SQL_PORT=5432
+      - SQL_HOST=db
     depends_on:
       - db
   
   db:
     container_name: db
     image: postgres:12.0-alpine
-    env_file: ./backend/.env.postgres
+    environment:
+      - DATABASE=postgres
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=core
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
@@ -54,8 +60,6 @@ services:
 
 volumes:
   postgres_data:
-  static:
-  media:
 EOF
 
 chmod +x $SCRIPT_NAME
