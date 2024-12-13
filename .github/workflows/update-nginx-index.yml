@@ -21,6 +21,6 @@ jobs:
             HOSTNAME: ${{ github.event.inputs.ip_ec2 }}
             USER_NAME: ${{secrets.SSH_USER}}
         run: |
-          echo ${{ secrets.SSH_KEY }} > private_key && chmod 600 private_key
+          echo '${{ secrets.SSH_KEY }}' > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
           ./home/ubuntu/deploy_ngx.sh
