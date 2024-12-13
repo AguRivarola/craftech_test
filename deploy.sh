@@ -64,7 +64,11 @@ EOF
 echo "Compose file creado" >> /home/ubuntu/set_up.log
 chmod +x $SCRIPT_NAME
 echo "Esperando daemon de docker" >> /home/ubuntu/set_up.log
-sleep 35
+while (! sudo docker stats --no-stream ); do
+  # Docker takes a few seconds to initialize
+  echo "Waiting for Docker to launch..." >> /home/ubuntu/set_up.log
+  sleep 1
+done
 echo "Termino de esperar daemon de docker" >> /home/ubuntu/set_up.log
 sudo docker-compose -f $SCRIPT_NAME up -d
 echo "Corrido el 'sudo docker-compose -f $SCRIPT_NAME up -d' " >> /home/ubuntu/set_up.log
